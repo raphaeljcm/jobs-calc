@@ -6,7 +6,7 @@
   <a href="#-Technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-changes">Changes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#changes">Changes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-license">License</a>
 </p>
 
@@ -56,4 +56,4 @@ This project is under MIT License. See the [LICENSE](.github/LICENSE.md) for mor
 
 ---
 
-It was made with a lot of ☕ by Raphael Marques. A big thanks for Rockeseat and all its team that has been really helping me to become a better web developer! Click here to access Rocketseat's Community on [Discord](https://discordapp.com/invite/gCRAFhc).
+It was made with a lot of ☕ by Raphael Marques. A GREAT thanks for Rockeseat and all its team that has been really helping me to become a better web developer! Click here to access Rocketseat's Community on [Discord](https://discordapp.com/invite/gCRAFhc).
