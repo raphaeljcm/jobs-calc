@@ -3,10 +3,11 @@
 </h1>
 
 <p align="center">
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-Technologies">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#memo-licença">Licença</a>
+  <a href="#-changes">Changes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>
 </p>
 
 <p align="center">
@@ -18,12 +19,16 @@
 <br>
 
 <p align="center">
-  <img alt="dev.finances" src=".github/jobscalc.png" width="100%">
+  <img alt="jobs calc project" src=".github/jobscalc.png" width="100%">
 </p>
 
-## 🚀 Tecnologias
+## 💻 Project
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+Jobscalc is a calculation estimation application for freelance projects. With this app you're able to create and delete jobs(projects), getting a cost estimate for each job. Besides, it is also possible to track the hourly value of the person who will be using the system. 💰
+
+## 🚀 Technologies
+
+I have been developing this project with these techs:
 
 - HTML
 - CSS
@@ -31,20 +36,24 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - NodeJS
 - EJS
 - Express
-- SQLite
-
-## 💻 Projeto
-
-O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer, onde é possível cadastrar e excluir jobs (projetos), obtendo uma estimativa de custo de cada job. Além disso, é possível traçar o valor da hora da pessoa que estará usando o sistema 💰
+- MongoDB
+- Mongoose
 
 ## 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+You can see the project layout [clicking here](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). It's required an account on [Figma](https://figma.com) to be able to access it.
 
-## :memo: Licença
+## Changes 
+This project is my first contact with backend in a practice way. Rocketseat gave all the frontend part already done, so I was able to focus on backend. I did the marathon with them and afterwards I did a lot of upgrades like:
+- Put everything the way I like 
+- Architeture, I changed it completely to something I find it easy to understand
+- The database, they used SQL Lite, I changed it to MongoDB
+- To do -> create a login page and make it works with JWT
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
+## :memo: License
+
+This project is under MIT License. See the [LICENSE](.github/LICENSE.md) for more details.
 
 ---
 
-Feito com ♥ by Rocketseat :wave: [Participe da nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
+It was made with a lot of ☕ by Raphael Marques. A big thanks for Rockeseat and all its team that has been really helping me to become a better web developer! Click here to access Rocketseat's Community on [Discord](https://discordapp.com/invite/gCRAFhc).
