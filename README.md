@@ -18,10 +18,6 @@
 
 <br>
 
-<p align="center">
-  <img alt="jobs calc project" src=".github/jobscalc.png" width="100%">
-</p>
-
 ## 💻 Project
 
 Jobscalc is a calculation estimation application for freelance projects. With this app you're able to create and delete jobs(projects), getting a cost estimate for each job. Besides, it is also possible to track the hourly value of the person who will be using the system. 💰
