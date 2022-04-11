@@ -1,14 +1,15 @@
-// Services
-const fn = require('../services/functions');
+// Utils
+const fn = require('../utils/functions');
 
-// Controllers
-const profileController = require('../controllers/profileController');
-
-// Temporary data
-let jobs = [];
+// Models
+const Profile = require('../models/Profile');
+const Job = require('../models/Job');
 
 // move it later
 const reloadHomepage = (req, res) => {
+  const jobs = Job.get(); 
+  const profile = Profile.get();
+
   const updatedJobs = jobs.map(job => {
     // get remaining days
     const remaining = fn.remainingDays(job);
@@ -18,21 +19,21 @@ const reloadHomepage = (req, res) => {
       ...job,
       remaining,
       status,
-      budget: fn.calculateBudget(job, profileController.profile['value-hour'])
+      budget: fn.calculateBudget(job, profile['value-hour'])
      };
   });
 
-  const name = profileController.profile.name;
-  const avatar = profileController.profile.avatar;
-  const profile = { name, avatar };
+  const name = profile.name;
+  const avatar = profile.avatar;
+  const profileData = { name, avatar };
 
-  res.render('index', { jobs: updatedJobs, profile });
+  res.render('index', { jobs: updatedJobs, profile: profileData });
 }
 
 const createAJob = (req, res) => {
-  const lastId = jobs.at(-1)?.id || 0;
+  const lastId = Job.get().at(-1)?.id || 0;
 
-  jobs.push({
+  Job.get().push({
     id: lastId + 1,
     name: req.body.name,
     'daily-hours': req.body['daily-hours'],
@@ -46,13 +47,13 @@ const createAJob = (req, res) => {
 const showAJob = (req, res) => {
   const jobId = req.params.id; // it is a string
  
-  const job = jobs.find(job => Number(job.id) === Number(jobId));
+  const job = Job.get().find(job => Number(job.id) === Number(jobId));
 
   if(!job) {
     res.send('Job not found!');
   }
 
-  job.budget = fn.calculateBudget(job, profileController.profile['value-hour']);
+  job.budget = fn.calculateBudget(job, Profile.get()['value-hour']);
 
   res.render('job-edit', { job });
 }
@@ -60,7 +61,7 @@ const showAJob = (req, res) => {
 const updateAJob = (req, res) => {
   const jobId = req.params.id; // it is a string
  
-  const job = jobs.find(job => Number(job.id) === Number(jobId));
+  const job = Job.get().find(job => Number(job.id) === Number(jobId));
 
   if(!job) {
     res.send('Job not found!');
@@ -73,7 +74,7 @@ const updateAJob = (req, res) => {
     'total-hours': req.body['total-hours']
   }
 
-  jobs = jobs.map(job => {
+  const newJobs = Job.get().map(job => {
     if(Number(job.id) === Number(jobId)) {
       job = updatedJob;
     }
@@ -81,15 +82,17 @@ const updateAJob = (req, res) => {
     return job;
   });
 
+  Job.update(newJobs);
+
   res.redirect(`/job/edit/${jobId}`);
 }
 
 const deleteAJob = (req, res) => {
   const jobId = req.params.id;
-
-  jobs = jobs.filter(job => Number(job.id) !== Number(jobId));
+  
+  Job.delete(jobId);
 
   res.redirect('/');
 }
 
-module.exports = { jobs, createAJob, showAJob, updateAJob, reloadHomepage, deleteAJob };
+module.exports = { createAJob, showAJob, updateAJob, reloadHomepage, deleteAJob };

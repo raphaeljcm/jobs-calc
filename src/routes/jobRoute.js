@@ -16,8 +16,10 @@ router.post('/job', express.urlencoded({ extended: true }), jobController.create
 
 router.get('/job/edit/:id', jobController.showAJob);
 
+// PUT
 router.post('/job/edit/:id', express.urlencoded({ extended: true }), jobController.updateAJob);
 
+// DELETE
 router.post('/job/delete/:id', express.urlencoded({ extended: true }), jobController.deleteAJob);
 
 module.exports = router;

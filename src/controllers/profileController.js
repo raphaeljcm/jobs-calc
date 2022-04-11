@@ -1,15 +1,7 @@
-//Temporary data
-let profile = {
-  name: 'Raphael Marques',
-  avatar: 'https://github.com/raphaeljcm.png',
-  'monthly-budget': 1500,
-  'days-per-week': 5,
-  'hours-per-day': 6, 
-  'vacation-per-year': 4,
-  'value-hour': 12.5
-}
+// Models
+const Profile = require('../models/Profile');
 
-const showProfile = (req, res) => res.render('profile', { profile });
+const showProfile = (req, res) => res.render('profile', { profile: Profile.get() });
 
 const updateProfile = (req, res) => {
   const data = req.body;
@@ -22,13 +14,13 @@ const updateProfile = (req, res) => {
   // What's gonna be the value of my hour
   const valueHour = data['monthly-budget'] / monthlyTotalHours;
 
-  profile = {
-    ...profile,
+  Profile.update({
+    ...Profile.get(),
     ...req.body,
     'value-hour': valueHour
-  }
+  });
 
   res.redirect('/profile');
 }
 
-module.exports = { profile, showProfile, updateProfile };
+module.exports = { showProfile, updateProfile };
