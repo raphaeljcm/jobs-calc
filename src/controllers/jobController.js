@@ -5,32 +5,7 @@ const fn = require('../utils/functions');
 const Profile = require('../models/Profile');
 const Job = require('../models/Job');
 
-// move it later
-const reloadHomepage = (req, res) => {
-  const jobs = Job.get(); 
-  const profile = Profile.get();
-
-  const updatedJobs = jobs.map(job => {
-    // get remaining days
-    const remaining = fn.remainingDays(job);
-    const status = remaining <= 0 ? 'done' : 'progress'; // to set in the class
-
-    return { 
-      ...job,
-      remaining,
-      status,
-      budget: fn.calculateBudget(job, profile['value-hour'])
-     };
-  });
-
-  const name = profile.name;
-  const avatar = profile.avatar;
-  const profileData = { name, avatar };
-
-  res.render('index', { jobs: updatedJobs, profile: profileData });
-}
-
-const createAJob = (req, res) => {
+const createAJob = async (req, res) => {
   const lastId = Job.get().at(-1)?.id || 0;
 
   Job.get().push({
@@ -89,10 +64,11 @@ const updateAJob = (req, res) => {
 
 const deleteAJob = (req, res) => {
   const jobId = req.params.id;
+  console.log(Job.get())
   
   Job.delete(jobId);
 
   res.redirect('/');
 }
 
-module.exports = { createAJob, showAJob, updateAJob, reloadHomepage, deleteAJob };
+module.exports = { createAJob, showAJob, updateAJob, deleteAJob };

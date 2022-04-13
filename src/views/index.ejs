@@ -33,7 +33,11 @@
           <img id="logo" src="/images/logo.svg" alt="Logo" />
           <span id="notification">
             <img src="/images/alert-octagon.svg" alt="Alerta" />
-            Você tem 2 horas livres no seu dia
+            <% if (freeHours <= 0) { %>
+              Você não tem horas livres no seu dia
+            <% } else { %>
+              Você tem <%= freeHours %> horas livres no seu dia
+            <% } %>
           </span>
           <a href="/profile" id="avatar-profile">
             <p><%= profile.name %>  <span>Ver perfil</span></p>
@@ -50,15 +54,15 @@
 
           <div class="info">
             <div class="total">
-              <strong>12</strong>
+              <strong><%= status.total %> </strong>
               Projetos ao total
             </div>
             <div class="in-progress">
-              <strong>7</strong>
+              <strong><%= status.progress %> </strong>
               Em andamento
             </div>
             <div class="finished">
-              <strong>4</strong>
+              <strong><%= status.done %> </strong>
               Encerrados
             </div>
           </div>
@@ -78,8 +82,8 @@
 
         <div class="cards">
           <% jobs.forEach(job => { %>
-            <div class="card <%= job.status %>" data-id="<%= job.id %>">
-              <div class="id column"><%= job.id %></div> 
+            <div class="card <%= job.status %>" data-id="<%= job._id %>">
+              <div class="id column"><%= job._id %></div> 
               <div class="name column">
                 <%= job.name %> 
               </div>

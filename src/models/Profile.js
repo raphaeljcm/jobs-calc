@@ -1,18 +1,13 @@
-let Profile = {
-  name: 'Raphael Marques',
-  avatar: 'https://github.com/raphaeljcm.png',
-  'monthly-budget': 1500,
-  'days-per-week': 5,
-  'hours-per-day': 6, 
-  'vacation-per-year': 4,
-  'value-hour': 12.5
-}
+const mongoose = require('mongoose');
 
-module.exports = {
-  get: () => {
-    return Profile;
-  },
-  update: (newUser) => {
-    Profile = newUser;
-  }
-};
+const profileSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  avatar: { type: String, required: true },
+  'monthly-budget': { type: Number, required: true },
+  'hours-per-day': { type: Number, required: true },
+  'vacation-per-year': { type: Number, required: true },
+  'days-per-week': { type: Number, required: true },
+  'value-hour': { type: Number, required: true }
+});
+
+module.exports = mongoose.model('Profile', profileSchema);

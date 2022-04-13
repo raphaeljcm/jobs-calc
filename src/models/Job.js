@@ -1,22 +1,26 @@
-// Temporary data
-let jobs = [
-  {
-    id: 1,
-    name: 'Pizzaria Guloso',
-    'daily-hours': 2,
-    'total-hours': 1,
-    created_at: Date.now()
-  }
-];
+const mongoose = require('mongoose');
 
-module.exports = {
-  get: () => {
-    return jobs;
-  }, 
-  update: (newData) => {
-    jobs = newData;
-  },
-  delete: (jobId) => {
-    jobs = jobs.filter(job => Number(job.id) !== Number(jobId));
-  }
-};
+const jobSchema = new mongoose.Schema({
+  _id: { type: Number, required: true },
+  name: { type: String, required: true },
+  'daily-hours': { type: Number, required: true },
+  'total-hours': { type: Number, required: true },
+  created_at: { type: Date, required: true }
+});
+
+// module.exports = {
+//   get: () => {
+//     return jobs;
+//   }, 
+//   update: (newData) => {
+//     jobs = newData;
+//   },
+//   delete: (jobId) => {
+//     console.log(jobs)
+//     jobs = jobs.filter(job => Number(job.id) !== Number(jobId));
+//     console.log(jobs)
+  
+//   }
+// };
+
+module.exports = mongoose.model('Job', jobSchema);
