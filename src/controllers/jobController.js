@@ -19,7 +19,7 @@ const createAJob = async (req, res) => {
     }
   
     const job = new Job(data);
-    const doc = await job.save();
+    await job.save();
 
     res.redirect('/');
   } catch(err) {
@@ -28,11 +28,11 @@ const createAJob = async (req, res) => {
 }
 
 const showAJob = async (req, res) => {
-  console.log('dkas')
   const jobId = req.params.id; // it is a string
  
   const allJobs = await Job.find({});
   const profile = await Profile.findOne({});
+ 
   const job = allJobs.find(job => Number(job.id) === Number(jobId));
 
   if(!job) {
@@ -44,42 +44,42 @@ const showAJob = async (req, res) => {
   res.render('job-edit', { job });
 }
 
-const updateAJob = (req, res) => {
-  const jobId = req.params.id; // it is a string
- 
-  const job = Job.get().find(job => Number(job.id) === Number(jobId));
-
-  if(!job) {
-    res.send('Job not found!');
-  }
-
-  const updatedJob = {
-    ...job,
-    name: req.body.name,
-    'daily-hours': req.body['daily-hours'],
-    'total-hours': req.body['total-hours']
-  }
-
-  const newJobs = Job.get().map(job => {
-    if(Number(job.id) === Number(jobId)) {
-      job = updatedJob;
+const updateAJob = async (req, res) => {
+  try {
+    const jobId = req.params.id; // it is a string
+    const allJobs = await Job.find({});
+   
+    const job = allJobs.find(job => Number(job.id) === Number(jobId));
+  
+    if(!job) {
+      res.send('Job not found!');
+    }
+  
+    const updatedJob = {
+      ...job.toObject(),
+      name: req.body.name,
+      'daily-hours': req.body['daily-hours'],
+      'total-hours': req.body['total-hours']
     }
 
-    return job;
-  });
-
-  Job.update(newJobs);
-
-  res.redirect(`/job/edit/${jobId}`);
+    await Job.updateOne({ _id: jobId }, updatedJob);
+  
+    res.redirect(`/job/edit/${jobId}`);
+  } catch(err) {
+    res.send(err.message);
+  }
 }
 
-const deleteAJob = (req, res) => {
-  const jobId = req.params.id;
-  console.log(Job.get())
+const deleteAJob = async (req, res) => {
+  try {
+    const jobId = req.params.id;
+    
+    await Job.findByIdAndDelete(jobId);
   
-  Job.delete(jobId);
-
-  res.redirect('/');
+    res.redirect('/');
+  } catch(err) {
+    res.send(err.message);
+  }
 }
 
 module.exports = { createAJob, showAJob, updateAJob, deleteAJob };
