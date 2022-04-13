@@ -10,10 +10,6 @@ const reloadHomepage = async (req, res) => {
     // getting data
     const [jobs, profile] = await Promise.all([Job.find({}), Profile.findOne({})]);
 
-    console.log(jobs, profile)
-    // const jobs = await Job.find({});
-    // const profile = await Profile.findOne({});
-
     // Reseting 
     let statusCount = {
       progress: 0,

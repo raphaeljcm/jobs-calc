@@ -6,29 +6,40 @@ const Profile = require('../models/Profile');
 const Job = require('../models/Job');
 
 const createAJob = async (req, res) => {
-  const lastId = Job.get().at(-1)?.id || 0;
+  try {
+    const allJobs = await Job.find({});
+    const lastId = allJobs.at(-1)?._id || 0;
 
-  Job.get().push({
-    id: lastId + 1,
-    name: req.body.name,
-    'daily-hours': req.body['daily-hours'],
-    'total-hours': req.body['total-hours'],
-    created_at: Date.now()
-  });
+    const data = {
+      _id: lastId + 1,
+      name: req.body.name,
+      'daily-hours': req.body['daily-hours'],
+      'total-hours': req.body['total-hours'],
+      created_at: Date.now()
+    }
+  
+    const job = new Job(data);
+    const doc = await job.save();
 
-  res.redirect('/');
+    res.redirect('/');
+  } catch(err) {
+    res.send(err.message);
+  }
 }
 
-const showAJob = (req, res) => {
+const showAJob = async (req, res) => {
+  console.log('dkas')
   const jobId = req.params.id; // it is a string
  
-  const job = Job.get().find(job => Number(job.id) === Number(jobId));
+  const allJobs = await Job.find({});
+  const profile = await Profile.findOne({});
+  const job = allJobs.find(job => Number(job.id) === Number(jobId));
 
   if(!job) {
     res.send('Job not found!');
   }
 
-  job.budget = fn.calculateBudget(job, Profile.get()['value-hour']);
+  job.budget = fn.calculateBudget(job, profile['value-hour']);
 
   res.render('job-edit', { job });
 }
