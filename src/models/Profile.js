@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
   _id: { type: Number, required: true },
+  name: { type: String, require: true },
   avatar: { type: String, required: true },
   'monthly-budget': { type: Number, required: true },
   'hours-per-day': { type: Number, required: true },

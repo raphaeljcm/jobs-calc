@@ -8,9 +8,11 @@ const Job = require('../models/Job');
 const reloadHomepage = async (req, res) => {
   try {
     // getting data
-    let jobs = await Job.find({});
-    const profile = await Profile.findOne({});
-    jobs = jobs;
+    const [jobs, profile] = await Promise.all([Job.find({}), Profile.findOne({})]);
+
+    console.log(jobs, profile)
+    // const jobs = await Job.find({});
+    // const profile = await Profile.findOne({});
 
     // Reseting 
     let statusCount = {
@@ -41,8 +43,7 @@ const reloadHomepage = async (req, res) => {
         budget: fn.calculateBudget(job, profile['value-hour'])
        };
     });
-    
-    console.log(updatedJobs)
+  
     let freeHours = profile['hours-per-day'] - jobTotalHours;
 
     res.render('index', { jobs: updatedJobs, profile, status: statusCount, freeHours });
