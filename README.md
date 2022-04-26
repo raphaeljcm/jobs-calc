@@ -11,16 +11,26 @@
 </p>
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=49AA26&labelColor=000000" alt="PRs welcome!" />
-
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
 </p>
 
 <br>
 
+<p align="center">
+  <img alt="JobsCalc" src="public/images/capa.png" width="100%">
+</p>
+
 ## 💻 Project
 
 Jobscalc is a calculation estimation application for freelance projects. With this app you're able to create and delete jobs(projects), getting a cost estimate for each job. Besides, it is also possible to track the hourly value of the person who will be using the system. 💰
+
+## How to use?
+
+Download this repositorie and with your teminal, enter in the directory. Before, make sure you have MongoDb installed in your device
+
+1. Run the command `npm install` to install the dependencies
+2. And to start the application, run the command `npm start` 
+3. Now, it will run and create the DB LOCALLY automatically, to have a better experience use Mongo DB Compass
 
 ## 🚀 Technologies
 
