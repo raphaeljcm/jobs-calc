@@ -24,14 +24,6 @@
 
 Jobscalc is a calculation estimation application for freelance projects. With this app you're able to create and delete jobs(projects), getting a cost estimate for each job. Besides, it is also possible to track the hourly value of the person who will be using the system. 💰
 
-## How to use?
-
-Download this repositorie and with your teminal, enter in the directory. Before, make sure you have MongoDb installed in your device
-
-1. Run the command `npm install` to install the dependencies
-2. And to start the application, run the command `npm start` 
-3. Now, it will run and create the DB LOCALLY automatically, to have a better experience use Mongo DB Compass
-
 ## 🚀 Technologies
 
 I have been developing this project with these techs:
@@ -48,6 +40,14 @@ I have been developing this project with these techs:
 ## 🔖 Layout
 
 You can see the project layout [clicking here](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). It's required an account on [Figma](https://figma.com) to be able to access it.
+
+## How to use?
+
+Download this repositorie and with your teminal, enter in the directory. Before, make sure you have MongoDb installed in your device
+
+1. Run the command `npm install` to install the dependencies
+2. And to start the application, run the command `npm start` 
+3. Now, it will run and create the DB LOCALLY automatically, to have a better experience use Mongo DB Compass
 
 ## Changes 
 This project is my first contact with backend in a practice way. Rocketseat gave all the frontend part already done, so I was able to focus on backend. I did the marathon with them and afterwards I did a lot of upgrades like:
